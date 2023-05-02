@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "/images/logo.png";
 import ActiveLink from "../ActiveLink";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -48,7 +49,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn bg-[#c5a86b] border-0">Login</a>
+        <Link to='/login' className="btn bg-[#c5a86b] border-0">Login</Link>
       </div>
     </div>
   );
