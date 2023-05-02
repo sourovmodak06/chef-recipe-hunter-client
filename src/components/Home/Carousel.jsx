@@ -63,7 +63,7 @@ const Carousel = () => {
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
         className="w-full h-full bg-center bg-cover duration-500"
       >
-        <div className="absolute left-0 top-0 h-full flex flex-col justify-center px-10 w-1/2 text-justify">
+        <div className="absolute left-0 top-0 h-[420px] flex flex-col justify-center px-10 w-1/2 text-justify">
           <h2 className="text-3xl font-bold text-white mb-2">{slides[currentIndex].title}</h2>
           <p className="text-white">{slides[currentIndex].text}</p>
         </div>
