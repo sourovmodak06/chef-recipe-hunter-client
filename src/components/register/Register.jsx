@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
+  const [show, setShow] = useState(false);
+  const handleShow = () => {
+    setShow(!show);
+  }
+  const handleValidation = (e) => {
+    e.preventDefault();
+    const password = e.target.password.value;
+    
+    const regExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6}$/
+
+    if (!regExp.test(password)) {
+      toast.error("Minimum six characters, at least one letter and one number")
+      return;
+    }
+
+  }
+  
   return (
-    <form className="">
+    <form className="" onSubmit={handleValidation}>
+      <ToastContainer theme="colored"/>
       <div className="w-[35%] m-auto my-20 bg-[#1A1919] text-white rounded-lg pb-10 drop-shadow-xl">
         <h2 className="text-center text-2xl font-semibold py-5">Register</h2>
         <div className="pl-10">
@@ -32,14 +52,21 @@ const Register = () => {
           </div>
           <div>
             <p className="text-2xl py-3">Password</p>
-            <input
-              type="password"
-              name=""
-              id=""
-              placeholder="Your Password"
-              required
-              className="text-black w-[90%] p-2 rounded-md"
-            />
+            <div className="relative">
+              <input
+                type={show ? "text" : "password"}
+                name="password"
+                id=""
+                placeholder="Your Password"
+                required
+                className="text-black w-[90%] p-2 rounded-md pr-10"
+              />
+              <p onClick={handleShow} className="absolute top-3 right-10   md:right-12 lg:right-16">
+                {
+                  show? <FaEyeSlash className="text-black"/> : <FaEye className="text-black" />
+                }
+              </p>
+            </div>
           </div>
           <div>
             <p className="text-2xl py-3">Photo URL</p>
@@ -48,7 +75,6 @@ const Register = () => {
               name=""
               id=""
               placeholder="Your Photo URL"
-              required
               className="text-black w-[90%] p-2 rounded-md"
             />
           </div>
