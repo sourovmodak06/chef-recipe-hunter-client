@@ -1,29 +1,44 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext)
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(!show);
   }
-  const handleValidation = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    const password = e.target.password.value;
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    // const url = form.uel.value;
     
-    const regExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6}$/
+    const regExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/
 
     if (!regExp.test(password)) {
       toast.error("Minimum six characters, at least one letter and one number")
       return;
     }
 
+    createUser(email, password)
+    .then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      form.reset();
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
   
   return (
-    <form className="" onSubmit={handleValidation}>
+    <form onSubmit={handleRegister}>
       <ToastContainer theme="colored"/>
       <div className="w-[35%] m-auto my-20 bg-[#1A1919] text-white rounded-lg pb-10 drop-shadow-xl">
         <h2 className="text-center text-2xl font-semibold py-5">Register</h2>
@@ -32,8 +47,8 @@ const Register = () => {
             <p className="text-2xl pb-3">Name</p>
             <input
               type="text"
-              name=""
-              id=""
+              name="name"
+              id="name"
               placeholder="Your Name"
               required
               className="text-black w-[90%] p-2 rounded-md"
@@ -43,8 +58,8 @@ const Register = () => {
             <p className="text-2xl pb-3">Email</p>
             <input
               type="email"
-              name=""
-              id=""
+              name="email"
+              id="email"
               placeholder="Your Email"
               required
               className="text-black w-[90%] p-2 rounded-md"
@@ -56,7 +71,7 @@ const Register = () => {
               <input
                 type={show ? "text" : "password"}
                 name="password"
-                id=""
+                id="password"
                 placeholder="Your Password"
                 required
                 className="text-black w-[90%] p-2 rounded-md pr-10"
@@ -72,8 +87,9 @@ const Register = () => {
             <p className="text-2xl py-3">Photo URL</p>
             <input
               type="url"
-              name=""
-              id=""
+              name="url"
+              id="url"
+              required
               placeholder="Your Photo URL"
               className="text-black w-[90%] p-2 rounded-md"
             />
