@@ -22,6 +22,9 @@ const AuthProviders = ({children}) => {
     const googleCreateUser = () => {
         return signInWithPopup(auth, googleProvider);
     }
+    const githubCreateUser = () => {
+        return signInWithPopup(auth, githubProvider);
+    }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -42,6 +45,7 @@ const AuthProviders = ({children}) => {
         createUser,
         signIn,
         googleCreateUser,
+        githubCreateUser,
         logOut
     }
 

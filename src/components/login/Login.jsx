@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa"; 
 import { AuthContext } from "../../providers/AuthProviders";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
 
-  const {signIn} = useContext(AuthContext);
+  const {signIn,googleCreateUser,githubCreateUser} = useContext(AuthContext);
 
   const [show, setShow] = useState(false);
   const handleShow = () => {
@@ -18,17 +19,31 @@ const Login = () => {
     const password = form.password.value;
 
     signIn(email,password)
-    .then(result => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
+    .then(() => {
+      toast.success("Successfully Login by Email")
       form.reset();
     })
     .catch(error => {
-      console.log(error);
+      toast.error(error.message);
+    })
+  }
+  const handleGoogleSignIn = () => {
+    googleCreateUser()
+    .then(toast.success("Successfully Login by Google"))
+    .catch(error => {
+      toast.error(error.message);
+    })
+  }
+  const handleGithubSignIn = () => {
+    githubCreateUser()
+    .then(toast.success("Successfully Login by Github"))
+    .catch(error => {
+      toast.error(error.message);
     })
   }
   return (
     <form onSubmit={handleLogin}>
+      <ToastContainer theme="colored"/>
       <div className="w-[35%] m-auto my-20 bg-[#1A1919] text-white rounded-lg pb-10 drop-shadow-xl">
         <h2 className="text-center text-2xl font-semibold py-5">Login</h2>
         <div className="pl-10">
@@ -72,10 +87,10 @@ const Login = () => {
           <div className="h-[1px] bg-white w-full"></div>
         </div>
         <div className="flex justify-center items-center gap-7 pt-5">
-          <div className="p-2 bg-white rounded-lg">
+          <div onClick={handleGoogleSignIn} className="p-2 bg-white rounded-lg cursor-pointer">
             <FaGoogle className="text-2xl text-black" />
           </div>
-          <div className="p-2 bg-white rounded-lg">
+          <div onClick={handleGithubSignIn} className="p-2 bg-white rounded-lg cursor-pointer">
             <FaGithub className="text-2xl text-black" />
           </div>
         </div>

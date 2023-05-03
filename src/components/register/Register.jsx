@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Register = () => {
-  const { createUser, googleCreateUser } = useContext(AuthContext)
+  const { createUser } = useContext(AuthContext)
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(!show);
@@ -27,25 +27,16 @@ const Register = () => {
     }
 
     createUser(email, password)
-    .then(result => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
+    .then(() => {
+      toast.success("Successfully Register")
       form.reset();
     })
     .catch(error => {
-      console.log(error);
+      toast.error(error.message);
     })
+
   }
-  const handleGoogleSignIn = () => {
-    googleCreateUser()
-    .then(result => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  }
+  
   
   return (
     <form onSubmit={handleRegister}>
@@ -54,7 +45,7 @@ const Register = () => {
         <h2 className="text-center text-2xl font-semibold py-5">Register</h2>
         <div className="pl-10">
           <div>
-            <p className="text-2xl pb-3">Name</p>
+            <p className="text-2xl py-3">Name</p>
             <input
               type="text"
               name="name"
@@ -65,7 +56,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <p className="text-2xl pb-3">Email</p>
+            <p className="text-2xl py-3">Email</p>
             <input
               type="email"
               name="email"
@@ -115,15 +106,8 @@ const Register = () => {
           <p>Or</p>
           <div className="h-[1px] bg-white w-full"></div>
         </div>
-        <div className="flex justify-center items-center gap-7 pt-5">
-          <div onClick={handleGoogleSignIn} className="p-2 bg-white rounded-lg cursor-pointer">
-            <FaGoogle className="text-2xl text-black" />
-          </div>
-          <div className="p-2 bg-white rounded-lg cursor-pointer">
-            <FaGithub className="text-2xl text-black" />
-          </div>
-        </div>
-        <p className="text-right pr-5 pt-8">
+        
+        <p className="text-right pr-5 pt-5">
           Already have an account? 
           <Link
             to="/login"
