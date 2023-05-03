@@ -72,10 +72,10 @@ const Login = () => {
           <div className="h-[1px] bg-white w-full"></div>
         </div>
         <div className="flex justify-center items-center gap-7 pt-5">
-          <div className="p-5 bg-white rounded-lg">
+          <div className="p-2 bg-white rounded-lg">
             <FaGoogle className="text-2xl text-black" />
           </div>
-          <div className="p-5 bg-white rounded-lg">
+          <div className="p-2 bg-white rounded-lg">
             <FaGithub className="text-2xl text-black" />
           </div>
         </div>

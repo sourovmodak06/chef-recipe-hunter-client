@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext)
+  const { createUser, googleCreateUser } = useContext(AuthContext)
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(!show);
@@ -17,7 +17,7 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    // const url = form.uel.value;
+    const url = form.url.value;
     
     const regExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/
 
@@ -31,6 +31,16 @@ const Register = () => {
       const loggedUser = result.user;
       console.log(loggedUser);
       form.reset();
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+  const handleGoogleSignIn = () => {
+    googleCreateUser()
+    .then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
     })
     .catch(error => {
       console.log(error);
@@ -106,10 +116,10 @@ const Register = () => {
           <div className="h-[1px] bg-white w-full"></div>
         </div>
         <div className="flex justify-center items-center gap-7 pt-5">
-          <div className="p-5 bg-white rounded-lg">
+          <div onClick={handleGoogleSignIn} className="p-2 bg-white rounded-lg cursor-pointer">
             <FaGoogle className="text-2xl text-black" />
           </div>
-          <div className="p-5 bg-white rounded-lg">
+          <div className="p-2 bg-white rounded-lg cursor-pointer">
             <FaGithub className="text-2xl text-black" />
           </div>
         </div>
