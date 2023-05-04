@@ -1,6 +1,6 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const ChefInfo = () => {
   const chefs = useLoaderData();
@@ -27,9 +27,9 @@ const ChefInfo = () => {
                   <p className="font-semibold">{chef.likes}K</p>
                 </div>
                 <div className="card-actions">
-                  <button className="btn bg-[#c5a86b] border-0">
+                  <Link to='/chef-view' className="btn bg-[#c5a86b] border-0">
                     View Recipes
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

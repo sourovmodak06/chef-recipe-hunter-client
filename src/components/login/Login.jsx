@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa"; 
 import { AuthContext } from "../../providers/AuthProviders";
 import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
   const {signIn,googleCreateUser,githubCreateUser} = useContext(AuthContext);
 
   const [show, setShow] = useState(false);
@@ -21,6 +23,7 @@ const Login = () => {
     signIn(email,password)
     .then(() => {
       toast.success("Successfully Login by Email")
+      navigate(from, {replace: true})
       form.reset();
     })
     .catch(error => {
@@ -29,14 +32,20 @@ const Login = () => {
   }
   const handleGoogleSignIn = () => {
     googleCreateUser()
-    .then(toast.success("Successfully Login by Google"))
+    .then(()=>{
+      toast.success("Successfully Login by Google")
+      navigate(from, {replace: true})
+    })
     .catch(error => {
       toast.error(error.message);
     })
   }
   const handleGithubSignIn = () => {
     githubCreateUser()
-    .then(toast.success("Successfully Login by Github"))
+    .then(()=>{
+      toast.success("Successfully Login by Github")
+      navigate(from, {replace: true})
+    })
     .catch(error => {
       toast.error(error.message);
     })
