@@ -4,7 +4,6 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const ChefInfo = () => {
   const chefs = useLoaderData();
-
   return (
     <div>
       <div className="px-10 grid grid-cols-3 gap-4 pb-10">
@@ -27,7 +26,7 @@ const ChefInfo = () => {
                   <p className="font-semibold">{chef.likes}K</p>
                 </div>
                 <div className="card-actions">
-                  <Link to='/chef-view' className="btn bg-[#c5a86b] border-0">
+                  <Link to={`/chefData/${chef.id}`} className="btn bg-[#c5a86b] border-0">
                     View Recipes
                   </Link>
                 </div>

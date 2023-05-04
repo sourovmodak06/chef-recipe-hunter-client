@@ -21,8 +21,9 @@ const router = createBrowserRouter([
                 loader: () => fetch('https://tuk-tuk-kitchen-server-sourovmodak06.vercel.app/')
             },
             {
-                path: '/chef-view',
-                element: <PrivateRoute><ChefView></ChefView></PrivateRoute>
+                path: '/chefData/:id',
+                element: <PrivateRoute><ChefView></ChefView></PrivateRoute>,
+                loader: ({params}) => fetch(`https://tuk-tuk-kitchen-server-sourovmodak06.vercel.app/chefData/${params.id}`)
             },
             {
                 path: '/blog',
