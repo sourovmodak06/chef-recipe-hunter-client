@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext)
+  const { createUser,profileUpdate } = useContext(AuthContext)
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(!show);
@@ -27,7 +27,13 @@ const Register = () => {
     }
 
     createUser(email, password)
-    .then(() => {
+    .then((result) => {
+      const user = result.user;
+      profileUpdate(name,url)
+      .then()
+      .catch(error => {
+        toast.error(error.message);
+      })
       toast.success("Successfully Register")
       form.reset();
     })
