@@ -53,7 +53,7 @@ const Login = () => {
   return (
     <form onSubmit={handleLogin}>
       <ToastContainer theme="colored"/>
-      <div className="w-[35%] m-auto my-20 bg-[#1A1919] text-white rounded-lg pb-10 drop-shadow-xl">
+      <div className="md:w-[35%] md:m-auto md:my-20 my-10 mx-5 bg-[#1A1919] text-white rounded-lg pb-10 drop-shadow-xl">
         <h2 className="text-center text-2xl font-semibold py-5">Login</h2>
         <div className="pl-10">
           <div>

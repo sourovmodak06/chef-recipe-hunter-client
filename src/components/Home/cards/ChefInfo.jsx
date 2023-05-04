@@ -6,9 +6,9 @@ const ChefInfo = () => {
   const chefs = useLoaderData();
   return (
     <div>
-      <div className="px-10 grid grid-cols-3 gap-4 pb-10">
+      <div className="md:px-10 grid grid-cols-1 md:grid-cols-3 gap-4 pb-10 px-5">
         {chefs.map((chef) => (
-          <div key={chef.id} className="card w-96 bg-base-100 shadow-xl">
+          <div key={chef.id} className="card md:w-96 bg-base-100 shadow-xl">
             <figure>
               <img
                 src={chef.chef_picture}

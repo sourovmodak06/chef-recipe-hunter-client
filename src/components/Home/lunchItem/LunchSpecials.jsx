@@ -2,15 +2,15 @@ import React from 'react';
 
 const LunchSpecials = () => {
     return (
-        <div className='mx-auto w-[90%] bg-black p-5 text-[#c5a86b] rounded-md my-10'>
+        <div className='mx-auto md:w-[90%] bg-black p-5 text-[#c5a86b] rounded-md my-10'>
             <div className='h-full w-full rounded-md bg-white p-3'>
                 <div className='bg-black h-full w-full'>
                     <h2 className='text-center py-4 text-3xl underline decoration-wavy underline-offset-8 font-semibold'>LUNCH SPECIALS</h2>
                     <p className='text-center'>Available Monday - Friday from 11:00 AM - 2:45 PM</p>
-                    <p className='w-[40%] m-auto text-center'>Served with soup or salad, spring roll & jasmine or brownrice $2.99 for fried rice</p>
+                    <p className='md:w-[40%] m-auto text-center'>Served with soup or salad, spring roll & jasmine or brownrice $2.99 for fried rice</p>
                     <p className='text-center'>Choice of Tofu, Vegetable, Chicken or Pork $9.99 Beef $11.99 Shrimp $12.99</p>
-                    <div className='flex justify-between gap-10 px-20 py-10'>
-                        <div className='w-1/2'>
+                    <div className='flex flex-col md:flex-row justify-between md:gap-10 px-5 md:px-20 py-10'>
+                        <div className='md:w-1/2'>
                             <h2 className='font-semibold text-xl'>THAI FRIED RICE </h2>
                             <p>egg, tomatoes, onion, green onion</p>
                             <br />
@@ -29,7 +29,7 @@ const LunchSpecials = () => {
                             <h2 className='font-semibold text-xl'>CASHEW DELIGHT</h2>
                             <p>Snow pea, yellow onion, mushroom, celery, carrot, cashew nut.</p>
                         </div>
-                        <div className='w-1/2'>
+                        <div className='md:w-1/2'>
                             <h2 className='font-semibold text-xl'>THAI GARDEN</h2>
                             <p>Broccoli, carrot, yellow onion, Napa cabbage, cabbage, snowpea, zucchini, yellow onion.</p>
                             <br />

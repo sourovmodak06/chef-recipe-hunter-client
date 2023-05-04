@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className="mt-auto text-[#c5a86b]">
         <div className="w-full bg-[#1A1919] md:py-5 px-6 md:px-14 pt-20">
-            <div className="flex justify-between mb-5">
+            <div className="flex flex-col md:flex-row justify-between mb-5">
                 <Link to='/'><img src={logo} alt="logo" className="w-72 h-20"/></Link>
                 <div className="w-72">
                     <h2 className="font-bold text-2xl pb-5">Address</h2>

@@ -5,7 +5,7 @@ const NewItem = () => {
     return (
         <div className='py-10'>
             <div className='flex flex-col items-center'>
-                <h2 className='text-5xl font-semibold text-[#c5a86b]'>Amazingly Delicious</h2>
+                <h2 className='text-3xl md:text-5xl font-semibold text-[#c5a86b] text-center'>Amazingly Delicious</h2>
                 <div className='h-[2px] w-56 bg-[#c5a86b] my-5'></div>
             </div>
             <Marquee pauseOnHover>
